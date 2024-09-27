@@ -18,6 +18,8 @@ object silvestre {
 
 	method image() = "silvestre.png"
 
-	method position() = game.origin()
+	method restriction()  = pepita.position().x()
+
+	method position() = game.at(self.restriction().max(3), 0)
 	
 }

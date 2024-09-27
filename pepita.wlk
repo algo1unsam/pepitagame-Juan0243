@@ -7,7 +7,14 @@ object pepita {
 	var property position = game.origin()
 
 	method image() {
-		return if (self.estaEnElNido()) "pepita-grande.png" else "pepita.png"
+		if (self.estaEnElNido()) {
+			return "pepita-grande.png"
+			} else if (self.esAtrapada(silvestre) or self.estaCansada()){
+				return "pepita-gris.png"
+			} 
+			else {
+				return "pepita.png"
+			}
 	}
 
 	method come(comida) {
@@ -19,8 +26,15 @@ object pepita {
 	}
 
 	method irA(nuevaPosicion) {
-		self.vola(position.distance(nuevaPosicion))
-		position = nuevaPosicion
+		if(!self.estaCansada() and self.dentroDeLimite(nuevaPosicion)){
+		  self.vola(position.distance(nuevaPosicion))
+		  position = nuevaPosicion
+    	}
+//si se cansa, finaliza el juego
+		if (self.estaCansada()) {
+                game.say(self, "Me canse")
+                game.stop()
+        }
 	}
 
 	method estaCansada() {
@@ -31,10 +45,22 @@ object pepita {
 		return position == nido.position()
 	}
 	
-	
 	method estaEnElSuelo() {
 		return position.y() == 0 
 	}
 
+//es atrapada
+	method esAtrapada(silvestre) = self.position() == silvestre.position()
+
+//LIMITES
+	method dentroDeLimite(nuevaPosicion) {
+        return nuevaPosicion.x().between(0, 9) and nuevaPosicion.y().between(0, 9) 
+    }
+//GRAVEDAD
+	method caer() {
+        if (position.y() > 0) { 
+            position = position.down(1)
+        }
+    }
 }
 
