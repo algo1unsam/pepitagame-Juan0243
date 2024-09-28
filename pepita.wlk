@@ -3,7 +3,7 @@ import wollok.game.*
 
 object pepita {
 
-	var property energia = 100
+	var property energia = 200		//agrego energia porque es muy poco 100
 	var property position = game.origin()
 
 	method image() {

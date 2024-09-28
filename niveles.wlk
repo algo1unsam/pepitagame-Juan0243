@@ -22,7 +22,7 @@ object tutorial2 {
 		game.addVisual(silvestre)
 		game.addVisual(pepita)
 		config.configurarTeclas()
-		//config.configurarGravedad()  
+		config.configurarGravedad()  
 	}
 
 }
@@ -37,7 +37,7 @@ object tutorial3 {
 		game.addVisual(pepita)
 		config.configurarTeclas()
 		config.configurarColisiones()
-	//	config.configurarGravedad()
+		config.configurarGravedad()
 	}
 
 }
@@ -55,5 +55,9 @@ object config {
 	
 	method configurarColisiones() {
 		game.onCollideDo(pepita, { algo => algo.teEncontro(pepita) })
+	}
+
+	method configurarGravedad() {
+		game.onTick(800, "gravedad", {pepita.caer()})
 	}
 }
