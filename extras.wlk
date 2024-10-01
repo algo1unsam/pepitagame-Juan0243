@@ -23,7 +23,7 @@ object silvestre {
 	method position() = game.at(self.restriction().max(3), 0)
 	
 	method teEncontro(ave) {
-		game.say(ave, "PERDI! :(")
+		return game.say(ave, "PERDI! :(")
 		game.schedule(2000, { game.stop() })
 	}
 }

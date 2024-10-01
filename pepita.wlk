@@ -3,7 +3,7 @@ import wollok.game.*
 
 object pepita {
 
-	var property energia = 100
+	var property energia = 500
 	var property position = game.origin()
 
 	method image() {
@@ -19,6 +19,7 @@ object pepita {
 
 	method come(comida) {
 		energia = energia + comida.energiaQueOtorga()
+		game.removeVisual(comida)
 	}
 
 	method vola(kms) {
